@@ -1,1 +1,93 @@
-{"canmore.create_textdoc":{"name":"autocomplete-demo-readme","type":"document","content":"# AutocompleteTextView Demo\n\nThis repository contains a simple Android demo project that showcases the use of **AutoCompleteTextView** in an Android app using Kotlin. The project includes both the XML layout and the Kotlin activity code required to demonstrate autocomplete suggestions.\n\n---\n\n## 🚀 Features\n- **AutoCompleteTextView** implementation with a dropdown suggestion list.\n- Suggests city names once the user types 2 or more characters.\n- Clean and simple XML layout.\n- Toast message on item selection.\n- Demonstrates integration of XML, Kotlin logic, and adapter usage.\n\n---\n\n## 📂 Project Structure\n`\nMyApplication6/\n├── app/\n│   ├── src/\n│   │   ├── main/\n│   │   │   ├── java/com/example/myapplication/\n│   │   │   │   └── MainActivity.kt\n│   │   │   └── res/layout/\n│   │   │       └── activity_main.xml\n│   └── build.gradle\n└── README.md\n`\n\n---\n\n## 📝 Code Overview\n\n### XML Layout (`activity_main.xml`)\nDefines the `AutoCompleteTextView` with styling, hint, and dropdown behavior.\n\n`xml\n<AutoCompleteTextView\n    android:id=\"@+id/autoCompleteCity\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"wrap_content\"\n    android:hint=\"Enter city name\"\n    android:completionThreshold=\"2\"\n    android:dropDownHeight=\"200dp\"\n    android:dropDownWidth=\"match_parent\"\n    android:padding=\"12dp\"\n    android:textSize=\"16sp\" />\n`\n\n### Kotlin Code (`MainActivity.kt`)\nInitializes the AutoCompleteTextView, sets up the adapter with city names, and shows a toast on selection.\n\n`kotlin\nval cities = listOf(\"New York\", \"Los Angeles\", \"Chicago\", \"Houston\", \"Phoenix\",\n    \"Bengaluru\", \"Delhi\", \"Mumbai\", \"Kolkata\", \"Chennai\")\n\nval adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, cities)\nautoCompleteCity.setAdapter(adapter)\n\nautoCompleteCity.setOnItemClickListener { _, _, position, _ ->\n    val selectedCity = adapter.getItem(position)\n    Toast.makeText(this, \"You selected: $selectedCity\", Toast.LENGTH_SHORT).show()\n}\n`\n\n---\n\n## ▶️ Running the Project\n1. Clone this repository:\n   `bash\n   git clone https://github.com/your-username/your-repo-name.git\n   `\n2. Open the project in **Android Studio**.\n3. Make sure you have an emulator or physical device connected.\n4. Click **Run ▶️** to build and install the app.\n\n---\n\n## 📸 Demo\n- Start typing a city name (e.g., "Ne") and see suggestions like *New York*.\n- Select a city → a Toast message will confirm your selection.\n\n---\n\n## 📌 Requirements\n- **Android Studio Ladybug or later**\n- **compileSdkVersion 36** (or latest available)\n- Minimum SDK: 21\n\n---\n\n## 🧑‍💻 Author\nDeveloped as part of an Android learning/demo project. Contributions, suggestions, and improvements are welcome!\n\n---\n\n## 📄 License\nThis project is licensed under the MIT License - feel free to use and modify for your own learning or projects."}}
+# Auto-Complete TextView Demo (Android)
+
+A simple Android project that demonstrates how to implement an **AutoCompleteTextView** to suggest entries (cities, etc.) as the user types.
+
+---
+
+## 📂 Project Structure
+
+Auto-complete-text-view-in-android/
+├── app/
+│ ├── src/
+│ │ ├── main/
+│ │ │ ├── java/com/example/myapplication/
+│ │ │ │ └── MainActivity.kt
+│ │ │ └── res/
+│ │ │ └── layout/
+│ │ │ └── activity_main.xml
+│ └── build.gradle
+└── README.md
+
+
+- **MainActivity.kt** — Kotlin code that wires up the AutoCompleteTextView with an adapter and handles selection events.
+- **activity_main.xml** — Layout XML containing the `AutoCompleteTextView`.
+- **build.gradle** — contains SDK versions and dependencies.
+
+---
+
+## ✨ Features / What It Demonstrates
+
+- Setting a **threshold** so suggestions appear after typing a certain number of characters.
+- Using `ArrayAdapter` to supply suggestions (list of city names).
+- Listening for item selection and showing a `Toast`.
+- Basic setup that can be extended (e.g. custom adapter, network-based suggestions, etc.).
+
+---
+
+## 🛠️ Setup & Running
+
+1. Clone the repo:
+   ```bash
+   git clone https://github.com/danger1406/Auto-complete-text-view-in-android.git
+
+
+Open in Android Studio.
+
+Make sure your compileSdkVersion and targetSdkVersion in app/build.gradle match a recent SDK (for example, 36) — some dependencies require newer compile SDK levels.
+
+Sync Gradle and build the project.
+
+Run on an emulator or physical device supporting at least your minSdkVersion.
+
+You should see a screen with a text field. As you start typing (after 2 characters by default), a drop-down of suggestions appears. Selecting one displays a Toast confirming your choice.
+
+✅ Troubleshooting / Tips
+
+If your device/emulator isn’t showing in Android Studio’s “Running Devices” but shows in ADB:
+
+Use adb devices from the terminal inside the SDK’s platform-tools to confirm it's connected.
+
+Restart ADB:
+
+adb kill-server
+adb start-server
+
+
+Cold boot the emulator via Device Manager → “Cold Boot Now”.
+
+In Android Studio: Invalidate Caches / Restart.
+
+If you get a Gradle error like:
+
+Dependency 'androidx.core:core:1.17.0' requires compileSdk 36
+
+
+then increase compileSdk and targetSdk in build.gradle accordingly.
+
+📈 Extensions & Ideas
+
+Use a custom adapter (with filtering logic) to display richer suggestion items (icons, descriptions).
+
+Fetch suggestions from a web API (e.g. place autocomplete).
+
+Implement debouncing so network requests are minimized.
+
+Override enoughToFilter() or call showDropDown() to show suggestions even when no characters typed.
+
+Support multi-auto-complete (for tags, comma-separated entries).
+
+🧾 License & Credits
+
+This project is open source. Feel free to use or adapt it for your own learning or demos.
+
+Original concept by danger1406.
